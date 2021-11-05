@@ -1,0 +1,73 @@
+.top
+  $buttonSize: 120px
+  $buttonCount: 4
+  display: grid
+  place-content: center
+  place-items: center
+  gap: 5rem
+  padding: 50px 30px
+  @media (min-width: $medium)
+    gap: 9rem
+  @media (min-width: $large)
+    padding: 100px 300px
+
+  &__titles
+    display: grid
+    place-items: center
+    gap: 2rem
+    user-select: none
+    text-align: center
+    @media (min-width: $medium)
+      gap: 3rem
+
+  &__title
+    font-family: "Tomahack"
+    text-transform: uppercase
+    font-weight: normal
+    margin: 0
+    font-size: 4rem
+    line-height: 4rem
+    @media (min-width: $medium)
+      font-size: 8rem
+      line-height: 8rem
+      text-indent: 16px
+
+  &__subtitle
+    font-family: "Ailerons"
+    font-size: 2.25rem
+    line-height: 2.25rem
+    font-weight: normal
+    margin: 0
+    @media (min-width: $medium)
+      font-size: 4rem
+      line-height: 4rem
+
+  &__menu
+    position: relative
+    margin: 0
+    padding: 0 0 calc($buttonSize/2)
+    justify-self: center
+    align-items: center
+    grid-template-columns: repeat(calc($buttonCount/2), calc(($buttonSize * 0.75) * 0.75))
+    gap: 0 8px
+    @media (min-width: $medium)
+      grid-template-columns: repeat($buttonCount, calc($buttonSize * 0.75))
+
+  &__button
+    height: calc($buttonSize * 0.75)
+    width: calc($buttonSize * 0.75)
+    font-size: 1.625rem
+    letter-spacing: -0.375rem
+    &:nth-of-type(odd)
+      top: 0
+    &:nth-of-type(even)
+      top: calc(($buttonSize * 0.75)/2)
+    &:before
+      font-size: 4rem
+      top: 6px
+    @media (min-width: $medium)
+      height: $buttonSize
+      width: $buttonSize
+      font-size: 2rem
+      &:nth-of-type(even)
+        top: calc($buttonSize/2)

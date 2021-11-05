@@ -1,0 +1,101 @@
+.contact
+  gap: 100px
+  min-height: calc(100vh - 50px)
+  @media (min-width: $medium)
+    grid-template-columns: repeat(2, 1fr)
+
+  &__form
+    display: grid
+    gap: 20px
+
+  &__text
+    font-size: 1.25rem
+    line-height: 1.875rem
+    margin: 0 0 20px
+    @media (min-width: $medium)
+      font-size: 1.5rem
+      line-height: 2.25rem
+
+  &__group
+    display: grid
+    gap: 5px
+    align-items: center
+    &--submit
+      margin-top: 10px
+      grid-template-columns: auto 1fr
+      gap: 30px
+      animation: unset
+
+  &__input
+    padding: 10px
+    border-radius: 5px
+    border: none
+    font-size: 1.25rem
+    line-height: 1.5rem
+    background-color: $grey75
+    color: $grey10
+    &:focus-visible
+      outline: 2px solid var(--themeColor)
+      box-shadow: 0px 0px 1rem var(--themeColor75)
+
+  &__textarea
+    @extend .contact__input
+    resize: vertical
+    min-height: 10rem
+
+  &__submit
+    border: none
+    &:disabled
+      cursor: auto
+      background-color: $grey10
+      color: $grey25
+      & > span, & > .contact__icon
+        opacity: 0
+      & > .contact__submitting
+        opacity: 1
+
+  &__submitting
+    animation: loading 1000ms infinite linear
+    position: absolute
+    opacity: 0
+
+  &__status
+    font-size: 0.875rem
+    font-style: italic
+    animation: fadeOut 250ms ease-out 5000ms forwards
+
+  &__map
+    $borderWidth: 3px
+    background-image: url("../assets/images/map.jpg")
+    background-repeat: no-repeat
+    background-position: center
+    background-size: cover
+    border: $borderWidth solid var(--themeColor)
+    box-shadow: 0px 0px 1rem transparentize(white, 0.75), 0px 0px 1rem var(--themeColor75), 0px 0px 2rem var(--themeColor75), 0px 0px 4rem var(--themeColor75)
+    border-radius: 5px
+    max-height: 800px
+    min-height: 400px
+    position: relative
+
+    &::before
+      content: ""
+      height: calc(100% + 2px)
+      width: calc(100% + 2px)
+      position: absolute
+      top: -2px
+      left: -2px
+      border: 1px solid rgb(255 255 255 / 25%)
+      background: $scanlines
+      border-radius: 5px
+
+    &::after
+      content: ""
+      height: 100%
+      width: 100%
+      position: absolute
+      top: 0
+      left: 0
+      background: radial-gradient(circle, hsla(0deg, 100%, 50%, 0) 0%, var(--themeColor75) 50%, var(--themeColor) 100%)
+      mix-blend-mode: color
+      opacity: 0.25
+      border-radius: 5px

@@ -1,0 +1,24 @@
+.button
+  display: grid
+  gap: 10px
+  grid-template-columns: repeat(2, auto)
+  place-items: center
+  background-color: $grey25
+  padding: 10px
+  text-decoration: none
+  color: black
+  font-weight: bold
+  font-size: 1rem
+  transition: background-color 250ms ease-out, color 250ms ease-out
+  cursor: pointer
+
+  &:hover
+    background-color: var(--themeColor)
+    color: $grey75
+  
+  & > span
+    position: relative
+    top: 1px
+
+  & > svg
+    font-size: 1.25rem

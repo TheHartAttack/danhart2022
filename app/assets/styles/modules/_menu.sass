@@ -1,0 +1,59 @@
+.menu
+  $buttonSize: 80px
+  $buttonCount: 4
+  position: relative
+  margin: 0
+  padding: 0 14px calc($buttonSize/2) 0
+  justify-self: end
+  align-self: start
+  right: 0
+  transition: all 250ms ease-out
+  pointer-events: auto
+  user-select: none
+  display: grid
+  grid-template-columns: repeat($buttonCount, calc($buttonSize * 0.75))
+  justify-items: center
+  gap: 4px
+
+  &__button
+    height: $buttonSize
+    width: $buttonSize
+    clip-path: $hex
+    border: none
+    padding: 0
+    cursor: pointer
+    position: relative
+    background-color: $grey25
+    color: hsl(0, 0%, 1%)
+    font-family: "Ailerons"
+    font-size: 1.5rem
+    letter-spacing: -5px
+    text-indent: -4px
+    transition: all 250ms ease-out
+    &:nth-of-type(odd)
+      top: 0
+    &:nth-of-type(even)
+      top: calc($buttonSize/2)
+
+    &:before
+      content: attr(data-letter)
+      position: absolute
+      top: 4px
+      left: 0
+      height: 100%
+      width: 100%
+      color: rgba(0, 0, 0, 0.2)
+      font-size: 3rem
+      font-family: "Magzetician"
+      z-index: -1
+      display: grid
+      place-items: center
+      transition: all 250ms ease-out
+
+    &:hover
+      background-color: var(--themeColor)
+      color: $grey75
+
+    &--active
+      background-color: $grey10
+      color: $grey25

@@ -1,0 +1,29 @@
+.burger
+  background-color: $grey25
+  position: relative
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 25% 90%)
+  height: 84px
+  aspect-ratio: 2/1
+  justify-self: end
+  margin: 0
+  padding: 0
+  border: 0
+  right: -35px
+  cursor: pointer
+  pointer-events: auto
+  transition: all 250ms ease-out
+  grid-column: 2/3
+  &:hover
+    background-color: var(--themeColor)
+    & > .burger__icon
+      color: $grey75
+  
+  &--active
+    background-color: $grey25
+    color: $grey50
+    right: -35px !important
+
+  &__icon
+    font-size: 2.25rem
+    position: relative
+    top: -2.5%
