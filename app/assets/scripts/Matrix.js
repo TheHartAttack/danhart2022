@@ -3,7 +3,7 @@ import themeColor from "./ThemeColor"
 class Matrix {
   constructor() {
     this.app = document.querySelector("#app")
-    this.font = new FontFace("Magzetician", "url('./assets/fonts/Magzetician.ttf')")
+    this.font = new FontFace("Magzetician", "url('./assets/fonts/Magzetician.woff2')")
 
     this.removeCanvas()
     this.injectCanvas()

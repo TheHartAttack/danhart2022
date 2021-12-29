@@ -15,7 +15,7 @@ class RunAfterCompile {
       fse.copySync("./app/assets/images", "./dist/assets/images")
       fse.copySync("./app/favicon.ico", "./dist/favicon.ico")
       fse.copySync("./app/contact.php", "./dist/contact.php")
-      fse.copySync("./app/cv.pdf", "./dist/contact.php")
+      fse.copySync("./app/cv.pdf", "./dist/cv.pdf")
     })
   }
 }
