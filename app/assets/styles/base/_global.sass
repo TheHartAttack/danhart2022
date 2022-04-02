@@ -18,6 +18,9 @@ body
   &-track
     background: black
   &-thumb
-    background: var(--themeColor)
+    background: $grey50
+    transition: all 250ms ease-out
     &:hover
+      background: var(--themeColor)
+    &:active
       background: var(--themeColorLight)
