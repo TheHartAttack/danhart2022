@@ -3,6 +3,9 @@ function reducer(draft, action) {
     case "setSection":
       draft.section = action.data
       return
+    case "showHeader":
+      draft.showHeader = action.data
+      return
     case "showFooter":
       draft.showFooter = action.data
       return

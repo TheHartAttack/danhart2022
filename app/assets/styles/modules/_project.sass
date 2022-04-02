@@ -1,0 +1,195 @@
+.project
+  color: $grey75
+  $vertLine: 5rem
+  display: grid
+  grid-template-columns: 1fr
+  grid-template-rows: auto $vertLine 20rem
+  justify-items: center
+  align-items: center
+  width: 100%
+  @media (min-width: $large)
+    grid-template-columns: 3fr 1fr 3fr
+    grid-template-rows: unset
+    justify-items: unset
+  @media (min-width: $full)
+    width: calc(50% + (50% * 3/7) * 0.15 - 0.5rem)
+    margin-bottom: calc((-50% * 3/7) * 0.3 + 0.5rem)
+
+  &__text
+    display: grid
+    gap: 1rem
+    min-height: 100%
+    align-content: center
+    justify-items: center
+    position: relative
+    opacity: 0
+    transition: all 500ms 250ms ease-out
+    text-align: center
+    &.activated
+      opacity: 1
+    @media (min-width: $large)
+      text-align: left
+    @media (min-width: $full)
+      height: 0
+      justify-items: unset
+
+  &__title
+    margin: 0
+    font-size: 1.25rem
+
+  &__description
+    margin: 0 0 0.5rem
+    font-weight: lighter
+    max-width: 30rem
+    @media (min-width: $large)
+      max-width: unset
+
+  &__tech
+    margin: 0 0 1rem
+    padding: 0
+    display: grid
+    grid-template-columns: repeat(3, auto)
+    gap: 5px 50px
+    list-style-position: inside
+    white-space: nowrap
+    @media (min-width: $large)
+      grid-template-columns: repeat(2, auto)
+    & > h4
+      margin: 0
+      font-size: 0.875rem
+      font-weight: normal
+      grid-column: 1/-1
+    & > li
+      text-align: left
+
+  &__links
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    gap: 1rem
+
+  &__line
+    height: calc($vertLine * 0.6)
+    margin-top: calc($vertLine * 0.4)
+    width: calc(100% - 2rem)
+    background-color: var(--themeColor)
+    clip-path: polygon( calc(50% + 2px) 20px, calc(50% + 2px) 100%, calc(50% - 2px) 100%, calc(50% - 2px) 20px, calc(50% - 4px) 20px, calc(50% - 10px) 14px, calc(50% - 10px) 6px, calc(50% - 4px) 0, calc(50% + 4px) 0, calc(50% + 10px) 6px, calc(50% + 10px) 14px, calc(50% + 4px) 20px, 50% 20px, 50% 16px, calc(50% + 2px) 16px, calc(50% + 6px) 12px, calc(50% + 6px) 8px, calc(50% + 2px) 4px, calc(50% - 2px) 4px, calc(50% - 6px) 8px, calc(50% - 6px) 12px, calc(50% - 2px) 16px, 50% 16px )
+    position: relative
+    @media (min-width: $large)
+      margin-top: 0
+      height: 20px
+      clip-path: polygon(20px 6px, 20px 14px, 14px 20px, 6px 20px, 0 14px, 0 6px, 6px 0, 14px 0, 20px 6px, 16px 8px, 12px 4px, 8px 4px, 4px 8px, 4px 12px, 8px 16px, 12px 16px, 16px 12px, 16px 6px, 20px 6px, 20px 8px, 100% 8px, 100% 12px, 20px 12px)
+
+  &__image-wrapper
+    width: auto
+    height: 100%
+    aspect-ratio: 1/1
+    position: relative
+    clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%)
+    overflow: hidden
+    @media (min-width: $large)
+      width: 100%
+      height: auto
+    &::before
+      content: ""
+      width: 100%
+      height: 100%
+      position: absolute
+      top: 0
+      left: 0
+      background-color: var(--themeColor)
+      clip-path: polygon(calc(50% + 4px) 0, 30% 0, 0 30%, 0 70%, 30% 100%, calc(50% + 4px) 100%, 50% calc(100% - 3px), calc(70% - 1.5px) calc(100% - 3px), calc(100% - 3px) calc(70% - 1.5px), calc(100% - 3px) calc(30% + 1.5px), calc(70% - 1.5px) 3px, 50% 3px, 50% 4px, calc(70% - 2px) 4px, calc(100% - 4px) calc(30% + 2px), calc(100% - 4px) calc(70% - 2px), calc(70% - 2px) calc(100% - 4px), calc(30% + 2px) calc(100% - 4px), 4px calc(70% - 2px), 4px calc(30% + 2px), calc(30% + 2px) 4px, 50% 4px)
+      @media (min-width: $large)
+        clip-path: polygon(calc(50% + 4px) 0, 30% 0, 0 30%, 0 70%, 30% 100%, calc(50% + 4px) 100%, 50% calc(100% - 3px), calc(70% - 1.5px) calc(100% - 3px), calc(100% - 3px) calc(70% - 1.5px), calc(100% - 3px) calc(30% + 1.5px), calc(70% - 1.5px) 3px, 50% 3px, 50% 4px, calc(70% - 2px) 4px, calc(100% - 4px) calc(30% + 2px), calc(100% - 4px) calc(70% - 2px), calc(70% - 2px) calc(100% - 4px), calc(30% + 2px) calc(100% - 4px), 4px calc(70% - 2px), 4px calc(30% + 2px), calc(30% + 2px) 4px, 50% 4px)
+    &::after
+      content: ""
+      position: absolute
+      transform: translate(0, -50%)
+      top: 50%
+      left: -100px
+      height: 20px
+      width: 100px
+      background-color: var(--themeColor)
+      clip-path: polygon(20px 6px, 20px 14px, 14px 20px, 6px 20px, 0 14px, 0 6px, 6px 0, 14px 0, 20px 6px, 16px 8px, 12px 4px, 8px 4px, 4px 8px, 4px 12px, 8px 16px, 12px 16px, 16px 12px, 16px 6px, 20px 6px, 20px 8px, 100% 8px, 100% 12px, 20px 12px)
+
+  &__image
+    clip-path: $octagon
+    height: calc(100% - 4px)
+    width: calc(100% - 4px)
+    background-image: var(--bgImage)
+    background-size: cover
+    margin: 4px
+    height: calc(100% - 8px)
+    width: calc(100% - 8px)
+    position: relative
+    transition: all 250ms 500ms ease-out
+
+  &:nth-child(odd)
+    @media (min-width: $full)
+      justify-self: start
+    .project
+      &__text
+        justify-items: center
+        right: 2rem
+        &.activated
+          right: 0
+        @media (min-width: $large)
+          justify-items: end
+          text-align: end
+      &__image
+        left: -100%
+        right: 100%
+      &__line
+        @media (min-width: $large)
+          margin-left: 2rem
+          right: -1px
+      &__tech
+        justify-content: start
+
+      &__image-wrapper
+        &::before, > svg.lines
+          transform: rotate(90deg)
+          @media (min-width: $large)
+            transform: rotate(0deg)
+
+  &:nth-child(even)
+    @media (min-width: $full)
+      justify-self: end
+    &::before
+      right: unset
+      left: $projectImageWidth
+    .project
+      &__text
+        left: 2rem
+        &.activated
+          left: 0
+        @media (min-width: $large)
+          grid-area: 1/3/2/4
+          justify-items: start
+          text-align: start
+      &__line 
+        @media (min-width: $large)
+          grid-area: 1/2/2/3
+          clip-path: polygon(calc(100% - 20px) 6px, calc(100% - 20px) 14px, calc(100% - 14px) 20px, calc(100% - 6px) 20px, 100% 14px, 100% 6px, calc(100% - 6px) 0, calc(100% - 14px) 0, calc(100% - 20px) 6px, calc(100% - 16px) 8px, calc(100% - 12px) 4px, calc(100% - 8px) 4px, calc(100% - 4px) 8px, calc(100% - 4px) 12px, calc(100% - 8px) 16px, calc(100% - 12px) 16px, calc(100% - 16px) 12px, calc(100% - 16px) 6px, calc(100% - 20px) 6px, calc(100% - 20px) 8px, 0 8px, 0 12px, calc(100% - 20px) 12px)
+          margin-right: 2rem
+          left: -1px
+      &__image-wrapper
+        &::before
+          transform: rotate(-90deg)
+          clip-path: polygon(calc(50% - 4px) 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, calc(50% - 4px) 100%, 50% calc(100% - 3px), calc(30% + 1.5px) calc(100% - 3px), 3px calc(70% - 1.5px), 3px calc(30% + 1.5px), calc(30% + 1.5px) 3px, 50% 3px, 50% 4px, calc(30% + 2px) 4px, 4px calc(30% + 2px), 4px calc(70% - 2px), calc(30% + 2px) calc(100% - 4px), calc(70% - 2px) calc(100% - 4px), calc(100% - 4px) calc(70% - 2px), calc(100% - 4px) calc(30% + 2px), calc(70% - 2px) 4px, 50% 4px)
+          @media (min-width: $large)
+            transform: rotate(0deg)
+        &::after
+          left: unset
+          right: -100px
+          clip-path: polygon(calc(100% - 20px) 6px, calc(100% - 20px) 14px, calc(100% - 14px) 20px, calc(100% - 6px) 20px, 100% 14px, 100% 6px, calc(100% - 6px) 0, calc(100% - 14px) 0, calc(100% - 20px) 6px, calc(100% - 16px) 8px, calc(100% - 12px) 4px, calc(100% - 8px) 4px, calc(100% - 4px) 8px, calc(100% - 4px) 12px, calc(100% - 8px) 16px, calc(100% - 12px) 16px, calc(100% - 16px) 12px, calc(100% - 16px) 6px, calc(100% - 20px) 6px, calc(100% - 20px) 8px, 0 8px, 0 12px, calc(100% - 20px) 12px)
+        & svg.lines
+          transform: rotate(90deg)
+          @media (min-width: $large)
+            transform: rotate(180deg)
+      &__image
+        grid-area: 1/1/2/2
+        right: -100%
+        left: 100%
+
+  &:last-of-type
+    margin-bottom: 50px

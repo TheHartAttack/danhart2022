@@ -85,7 +85,7 @@ function Contact() {
 
   return (
     <section className="section contact">
-      <form onSubmit={handleSubmit} className="contact__form">
+      <form onSubmit={handleSubmit} className="contact__form fade-in">
         <p className="contact__text">If you’re interested in working with me, please send me an email using the form below.</p>
 
         <div className="contact__group">
@@ -145,7 +145,7 @@ function Contact() {
           {state.status && <span className="contact__status">{state.status}</span>}
         </div>
       </form>
-      <div className="contact__map"></div>
+      <div className="contact__map fade-in"></div>
     </section>
   )
 }

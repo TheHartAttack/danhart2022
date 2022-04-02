@@ -26,9 +26,9 @@ function Top() {
         <button onClick={() => scrollToSection("work")} className="menu__button menu__button--work top__button" data-letter="W">
           Work
         </button>
-        <button onClick={() => scrollToSection("skills")} className="menu__button menu__button--skills top__button" data-letter="S">
+        {/* <button onClick={() => scrollToSection("skills")} className="menu__button menu__button--skills top__button" data-letter="S">
           Skills
-        </button>
+        </button> */}
         <button onClick={() => scrollToSection("contact")} className="menu__button menu__button--contact top__button" data-letter="C">
           Contact
         </button>

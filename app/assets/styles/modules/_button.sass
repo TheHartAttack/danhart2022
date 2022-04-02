@@ -1,10 +1,10 @@
 .button
   display: grid
-  gap: 10px
+  gap: 0.625rem
   grid-template-columns: repeat(2, auto)
   place-items: center
-  background-color: $grey25
-  padding: 10px
+  background-color: $grey50
+  padding: 0.625rem
   text-decoration: none
   color: black
   font-weight: bold
@@ -19,6 +19,10 @@
   & > span
     position: relative
     top: 1px
+    justify-self: end
 
   & > svg
     font-size: 1.25rem
+
+  &__subtitle
+    font-size: 0.75rem

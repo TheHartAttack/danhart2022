@@ -4,67 +4,61 @@ import mgGlitch from "../assets/scripts/Glitch"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faGithub} from "@fortawesome/free-brands-svg-icons"
 import {faExternalLinkAlt} from "@fortawesome/free-solid-svg-icons"
+import projects from "../assets/scripts/Projects"
+
+//Components
+import DigitalLines from "./DigitalLines"
 
 function Work() {
-  const projects = [
-    {
-      name: "VibeRates",
-      link: "https://viberat.es",
-      image: "viberates.jpg"
-    },
-    {
-      name: "The Hart Attack",
-      link: "https://thehartattack.com",
-      image: "thehartattack.jpg"
-    },
-    {
-      name: "The Apocalypse",
-      link: "https://thehartattack.github.io/apocalypse",
-      image: "theapocalypse.jpg"
-    },
-    {
-      name: "Stardust Festival",
-      link: "https://danhart.uk/stardustfestival",
-      image: "stardustfestival.jpg"
-    },
-    {
-      name: "Dan Hart (2019)",
-      link: "https://danhart.uk/2019",
-      image: "danhart2019.jpg"
-    },
-    {
-      name: "Dan Hart (2017)",
-      link: "https://danhart.uk/2017",
-      image: "danhart2017.jpg"
-    },
-    {
-      name: "Heretic Hearts",
-      link: "https://heretic-hearts.firebaseapp.com",
-      image: "heretichearts.jpg"
-    }
-  ]
-
   return (
     <section className="section work">
-      <p className="work__paragraph">These are a selection of websites I've built over the years to showcase my ability, featuring a variety of different methods and tools. Please visit the link underneath to see the source code on my Github page.</p>
-
       <div className="work__container">
+        <h2 className="work__heading">My Work</h2>
+
         {projects.map((project, index) => {
           return (
-            <a key={index} href={project.link} target="_blank" className="work__item">
-              <div className="work__image-container">
-                <div className="work__image" style={{backgroundImage: `url(./assets/images/${project.image})`}}></div>
-                <FontAwesomeIcon icon={faExternalLinkAlt} className="work__link-icon" />
+            <div key={index} className="project">
+              <div className="project__text">
+                {Boolean(project.name) && <h3 className="project__title">{project.name}</h3>}
+
+                {Boolean(project.description) && <p className="project__description">{project.description}</p>}
+
+                {Boolean(project.tech.length) && (
+                  <ul className="project__tech">
+                    <h4>Key Tech:</h4>
+                    {project.tech.map((item, index) => {
+                      return <li key={index}>{item}</li>
+                    })}
+                  </ul>
+                )}
+
+                <div className="project__links">
+                  {Boolean(project.link) && (
+                    <a className="button" href={project.link} target="_blank">
+                      <span>Link</span>
+                      <FontAwesomeIcon icon={faExternalLinkAlt} />
+                    </a>
+                  )}
+
+                  {Boolean(project.github) && (
+                    <a className="button" href={project.github} target="_blank">
+                      <span>Github</span>
+                      <FontAwesomeIcon icon={faGithub} />
+                    </a>
+                  )}
+                </div>
               </div>
-            </a>
+
+              <div className="project__line"></div>
+
+              <div className="project__image-wrapper">
+                <DigitalLines />
+                {Boolean(project.image) && <div className="project__image image" data-image={`./assets/images/${project.image}`}></div>}
+              </div>
+            </div>
           )
         })}
       </div>
-
-      <a href="https://github.com/TheHartAttack" target="_blank" rel="noopener noreferrer" className="work__link button">
-        <span>Source code</span>
-        <FontAwesomeIcon icon={faGithub} />
-      </a>
     </section>
   )
 }

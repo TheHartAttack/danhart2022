@@ -6,6 +6,8 @@ import {throttle, debounce} from "lodash"
 import Color from "color"
 import ThemeColor from "./assets/scripts/ThemeColor"
 import Matrix from "./assets/scripts/Matrix"
+import ImageGlitch from "./assets/scripts/ImageGlitch"
+import Activate from "./assets/scripts/Activate"
 
 //Stylesheet
 import "./assets/styles/styles.sass"
@@ -20,7 +22,6 @@ import Header from "./components/Header"
 import Top from "./components/Top"
 import About from "./components/About"
 import Work from "./components/Work"
-import Skills from "./components/Skills"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
 import OverlayMenu from "./components/OverlayMenu"
@@ -28,6 +29,7 @@ import OverlayMenu from "./components/OverlayMenu"
 function Main() {
   const initialState = {
     section: "top",
+    showHeader: false,
     showFooter: false,
     size: "tiny",
     menuOpen: false
@@ -38,18 +40,18 @@ function Main() {
   useEffect(() => {
     setInterval(() => {
       const color = Color(ThemeColor.color.string())
-      const darken = color.darken(0.5)
-      document.documentElement.style.setProperty("--themeColor", darken)
-
-      const opacity50 = color.fade(0.5)
-      document.documentElement.style.setProperty("--themeColor50", opacity50)
-
-      const opacity75 = color.fade(0.75)
-      document.documentElement.style.setProperty("--themeColor75", opacity75)
+      document.documentElement.style.setProperty("--themeColor", color.darken(0.5))
+      document.documentElement.style.setProperty("--themeColor50", color.fade(0.5))
+      document.documentElement.style.setProperty("--themeColor75", color.fade(0.75))
+      document.documentElement.style.setProperty("--themeColorLight", color.lightness(31.25))
     }, 50)
 
     new Matrix()
+    new ImageGlitch(75)
+    new Activate(".project__text", 75)
+    new Activate(".fade-in", 75)
     scrollHandler()
+    checkMenu()
 
     window.addEventListener("scroll", throttle(scrollHandler, 250))
   }, [state.size])
@@ -72,21 +74,25 @@ function Main() {
   function scrollHandler() {
     const scroll = window.scrollY
     const windowHeight = window.innerHeight
+    const topMenu = document.querySelector(".top__menu").offsetTop + document.querySelector(".top__menu").offsetHeight
     const about = document.querySelector(".about").offsetTop
     const work = document.querySelector(".work").offsetTop
-    const skills = document.querySelector(".skills").offsetTop
     const contact = document.querySelector(".contact").offsetTop
 
     if (scroll >= contact - windowHeight / 2) {
       dispatch({type: "setSection", data: "contact"})
-    } else if (scroll >= skills - windowHeight / 2) {
-      dispatch({type: "setSection", data: "skills"})
     } else if (scroll >= work - windowHeight / 2) {
       dispatch({type: "setSection", data: "work"})
     } else if (scroll >= about - windowHeight / 2) {
       dispatch({type: "setSection", data: "about"})
     } else {
       dispatch({type: "setSection", data: "top"})
+    }
+
+    if (scroll >= topMenu) {
+      dispatch({type: "showHeader", data: true})
+    } else {
+      dispatch({type: "showHeader", data: false})
     }
 
     if (window.innerHeight + scroll >= document.body.offsetHeight) {
@@ -111,6 +117,12 @@ function Main() {
     }
   }
 
+  function checkMenu() {
+    if (state.size == "huge") {
+      dispatch({type: "closeMenu"})
+    }
+  }
+
   return (
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
@@ -118,7 +130,6 @@ function Main() {
         <Top />
         <About />
         <Work />
-        <Skills />
         <Contact />
         <Footer />
         <CSSTransition timeout={250} in={state.menuOpen} classNames="overlay" unmountOnExit>

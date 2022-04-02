@@ -5,9 +5,19 @@
   --themeColor: hsl(0deg, 100%, 25%)
   --themeColor50: hsla(0deg, 100%, 25%, 0.5)
   --themeColor75: hsla(0deg, 100%, 25%, 0.25)
-
+  --themeColorLight: hsl(0deg, 100%, 37.5%)
+  
 body 
   background-color: black
-  color: $grey50
+  color: $grey75
   &.noscroll
     overflow: hidden
+
+::-webkit-scrollbar
+  width: 1rem
+  &-track
+    background: black
+  &-thumb
+    background: var(--themeColor)
+    &:hover
+      background: var(--themeColorLight)

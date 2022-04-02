@@ -28,7 +28,7 @@ function Header() {
   }
 
   return (
-    <header className={`header${appState.section == "top" ? " header--hidden" : ""}`}>
+    <header className={`header${!appState.showHeader ? " header--hidden" : ""}`}>
       <button onClick={() => scrollToSection("top")} className={`header__logo ${appState.menuOpen ? "header__logo--hidden" : ""}`}>
         <Logo className="header__svg" />
       </button>
@@ -41,9 +41,9 @@ function Header() {
           <button onClick={() => scrollToSection("work")} className={`menu__button menu__button--work${appState.section == "work" ? " menu__button--active" : ""}`} data-letter="W">
             Work
           </button>
-          <button onClick={() => scrollToSection("skills")} className={`menu__button menu__button--skills${appState.section == "skills" ? " menu__button--active" : ""}`} data-letter="S">
+          {/* <button onClick={() => scrollToSection("skills")} className={`menu__button menu__button--skills${appState.section == "skills" ? " menu__button--active" : ""}`} data-letter="S">
             Skills
-          </button>
+          </button> */}
           <button onClick={() => scrollToSection("contact")} className={`menu__button menu__button--contact${appState.section == "contact" ? " menu__button--active" : ""}`} data-letter="C">
             Contact
           </button>

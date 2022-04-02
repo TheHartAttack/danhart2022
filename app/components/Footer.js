@@ -8,7 +8,7 @@ function Footer() {
 
   return (
     <footer className="footer">
-      <div className={`footer__hex ${appState.showFooter ? "footer__hex--active" : ""}`}>
+      <div className={`footer__oct ${appState.showFooter ? "footer__oct--active" : ""}`}>
         <FontAwesomeIcon icon={faCopyright} className="footer__copy" /> {new Date().getFullYear()}
       </div>
     </footer>

@@ -1,9 +1,10 @@
 .menu
-  $buttonSize: 80px
-  $buttonCount: 4
+  $buttonSize: 5rem
+  $buttonCount: 3
+  $buttonGap: 0.25rem
   position: relative
   margin: 0
-  padding: 0 14px calc($buttonSize/2) 0
+  padding: $buttonGap 1rem calc(($buttonSize * 0.7) + $buttonGap)
   justify-self: end
   align-self: start
   right: 0
@@ -11,29 +12,29 @@
   pointer-events: auto
   user-select: none
   display: grid
-  grid-template-columns: repeat($buttonCount, calc($buttonSize * 0.75))
+  grid-template-columns: repeat($buttonCount, calc($buttonSize * 0.7))
   justify-items: center
-  gap: 4px
+  gap: $buttonGap
 
   &__button
     height: $buttonSize
     width: $buttonSize
     clip-path: $hex
+    clip-path: $octagon
     border: none
     padding: 0
     cursor: pointer
     position: relative
-    background-color: $grey25
+    background-color: $grey50
     color: hsl(0, 0%, 1%)
-    font-family: "Ailerons"
-    font-size: 1.5rem
-    letter-spacing: -5px
-    text-indent: -4px
+    font-family: "Montserrat"
+    text-transform: uppercase
+    font-size: 0.875rem
     transition: all 250ms ease-out
     &:nth-of-type(odd)
       top: 0
     &:nth-of-type(even)
-      top: calc($buttonSize/2)
+      top: calc(($buttonSize * 0.7) + $buttonGap)
 
     &:before
       content: attr(data-letter)
@@ -42,7 +43,7 @@
       left: 0
       height: 100%
       width: 100%
-      color: rgba(0, 0, 0, 0.2)
+      color: rgba(0, 0, 0, 0.1)
       font-size: 3rem
       font-family: "Magzetician"
       z-index: -1
@@ -55,5 +56,5 @@
       color: $grey75
 
     &--active
-      background-color: $grey10
-      color: $grey25
+      background-color: $grey375
+      color: black

@@ -1,14 +1,14 @@
 .burger
-  background-color: $grey25
+  background-color: $grey50
   position: relative
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 25% 90%)
-  height: 84px
-  aspect-ratio: 2/1
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 1rem 100%, 0 calc(100% - 1rem))
+  height: 5.5rem
+  aspect-ratio: 1/1
   justify-self: end
   margin: 0
   padding: 0
   border: 0
-  right: -35px
+  right: 0
   cursor: pointer
   pointer-events: auto
   transition: all 250ms ease-out
@@ -21,9 +21,7 @@
   &--active
     background-color: $grey25
     color: $grey50
-    right: -35px !important
+    right: 0 !important
 
   &__icon
     font-size: 2.25rem
-    position: relative
-    top: -2.5%

@@ -15,14 +15,15 @@
       right: -300px
 
   &__logo
-    background-color: $grey25
-    height: 84px
-    aspect-ratio: 2/1
-    clip-path: polygon(0 0, 100% 0, 75% 90%, 0 90%)
+    background-color: $grey50
+    height: 5.5rem
+    width: 5.5rem
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1rem) 100%, 0 100%)
     display: grid
-    align-content: center
+    place-items: center
+    justify-self: start
     position: relative
-    left: -35px
+    left: 0px
     cursor: pointer
     border: none
     padding: 0
@@ -32,20 +33,21 @@
       background-color: var(--themeColor)
       & > .header__svg
         fill: $grey75
-    @media (min-width: $large)
-      height: 129px
-      left: -50px
     &--hidden
       display: none
+    @media (min-width: $huge)
+      width: 12rem
+      height: 9rem
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2rem), calc(100% - 2rem) 100%, 0 100%)
 
   &__svg
     fill: hsl(0, 0%, 1%)
-    height: 90%
-    padding: 15px
+    height: calc(100% - 2rem)
+    width: calc(100% - 2rem)
+    padding: 0
     box-sizing: border-box
     position: relative
-    left: 35px
     transition: all 250ms ease-out
-    @media (min-width: $large)
-      padding: 20px
-      left: 50px
+    @media (min-width: $huge)
+      height: calc(100% - 4rem)
+      width: calc(100% - 4rem)

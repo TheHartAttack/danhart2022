@@ -1,4 +1,5 @@
 .overlay
+  $buttonSize: 120px
   &__menu
     position: fixed
     top: 0
@@ -9,21 +10,19 @@
     background-color: $grey10
     display: grid
     grid-template-columns: repeat(2, 98px)
-    place-content: center
-    gap: 0
+    gap: calc($buttonSize / 2) 0
+    justify-content: center
+    align-content: center
+    padding: 0
   
   &__button
-    background-color: $grey25
-    color: $grey1
-    height: 120px
-    width: 120px
-    font-size: 2.25rem
-    letter-spacing: -0.5rem
-    text-indent: -6px
+    height: $buttonSize
+    width: $buttonSize
+    font-size: 1.25rem
     &:nth-of-type(odd)
       top: -30px
     &:nth-of-type(even)
-      top: 30px  
+      top: calc($buttonSize / 2)
     &::before
       font-size: 4rem
       top: 6px

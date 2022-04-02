@@ -20,6 +20,9 @@
     display: grid
     gap: 5px
     align-items: center
+    & > label
+      font-size: 1.125rem
+      font-weight: lighter
     &--submit
       margin-top: 10px
       grid-template-columns: auto 1fr
@@ -45,6 +48,8 @@
 
   &__submit
     border: none
+    font-size: 1.25rem
+    padding: 0.75rem
     &:disabled
       cursor: auto
       background-color: $grey10

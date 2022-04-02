@@ -1,12 +1,18 @@
 const currentTask = process.env.npm_lifecycle_event
 const path = require("path")
+const glob = require("glob")
 const Dotenv = require("dotenv-webpack")
 const {CleanWebpackPlugin} = require("clean-webpack-plugin")
 const HtmlWebpackHarddiskPlugin = require("html-webpack-harddisk-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const PurgeCSSPlugin = require("purgecss-webpack-plugin")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const fse = require("fs-extra")
+
+// const PATHS = {
+//   src: path.join(__dirname, "src")
+// }
 
 class RunAfterCompile {
   apply(compiler) {
@@ -27,13 +33,22 @@ let cssConfig = {
 }
 
 let config = {
-  entry: "./app/Main.js",
+  entry: {
+    main: path.resolve(__dirname, "./app/Main.js")
+  },
   output: {
     publicPath: "/",
     path: path.resolve(__dirname, "app"),
-    filename: "bundled.js"
+    filename: "[name].js"
   },
-  plugins: [new Dotenv(), new HtmlWebpackHarddiskPlugin()],
+  plugins: [
+    new Dotenv(),
+    new HtmlWebpackHarddiskPlugin(),
+    new HtmlWebpackPlugin({
+      filename: "index.html",
+      template: "app/index.html"
+    })
+  ],
   mode: "development",
   module: {
     rules: [
@@ -63,7 +78,8 @@ if (currentTask == "dev" || currentTask == "webpackDev") {
     port: 3000,
     static: path.join(__dirname, "app"),
     hot: true,
-    historyApiFallback: {index: "index.html"}
+    compress: true,
+    historyApiFallback: true
   }
 }
 
@@ -71,12 +87,10 @@ if (currentTask == "build" || currentTask == "webpackBuild") {
   config.plugins.push(
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({filename: "styles.[chunkhash].css"}),
-    new RunAfterCompile(),
-    new HtmlWebpackPlugin({
-      filename: "index.html",
-      template: "app/index-build.html",
-      alwaysWriteToDisk: true
-    })
+    new PurgeCSSPlugin({
+      paths: glob.sync(`${path.join(__dirname, "src")}/**/*`, {nodir: true})
+    }),
+    new RunAfterCompile()
   )
   cssConfig.use.unshift(MiniCssExtractPlugin.loader)
   config.mode = "production"
