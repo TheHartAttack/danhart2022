@@ -6,13 +6,9 @@ const {CleanWebpackPlugin} = require("clean-webpack-plugin")
 const HtmlWebpackHarddiskPlugin = require("html-webpack-harddisk-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const PurgeCSSPlugin = require("purgecss-webpack-plugin")
+const PurgecssPlugin = require("purgecss-webpack-plugin")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const fse = require("fs-extra")
-
-// const PATHS = {
-//   src: path.join(__dirname, "src")
-// }
 
 class RunAfterCompile {
   apply(compiler) {
@@ -87,8 +83,8 @@ if (currentTask == "build" || currentTask == "webpackBuild") {
   config.plugins.push(
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({filename: "styles.[chunkhash].css"}),
-    new PurgeCSSPlugin({
-      paths: glob.sync(`${path.join(__dirname, "src")}/**/*`, {nodir: true})
+    new PurgecssPlugin({
+      paths: glob.sync(`${path.join(__dirname, "app")}/**/*`, {nodir: true})
     }),
     new RunAfterCompile()
   )
@@ -106,41 +102,5 @@ if (currentTask == "build" || currentTask == "webpackBuild") {
     minimizer: [`...`, new CssMinimizerPlugin()]
   }
 }
-
-// let config = {
-//   entry: "./app/Main.js",
-//   output: {
-//     publicPath: "/",
-//     path: path.resolve(__dirname, "app"),
-//     filename: "bundled.js"
-//   },
-//   mode: "development",
-//   devtool: "source-map",
-//   devServer: {
-//     port: 3000,
-//     static: path.join(__dirname, "app"),
-//     hot: true,
-//     historyApiFallback: {index: "index.html"}
-//   },
-//   module: {
-//     rules: [
-//       cssConfig,
-//       {
-//         test: /\.(woff|woff2|eot|ttf|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-//         loader: "url-loader"
-//       },
-//       {
-//         test: /\.js$/,
-//         exclude: /(node_modules)/,
-//         use: {
-//           loader: "babel-loader",
-//           options: {
-//             presets: ["@babel/preset-react", ["@babel/preset-env", {targets: {node: "12"}}]]
-//           }
-//         }
-//       }
-//     ]
-//   }
-// }
 
 module.exports = config
